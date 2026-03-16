@@ -38,36 +38,22 @@
   height: 200px;
 }
 
-.president-quote__photo-placeholder {
+/* Actual photo styling */
+.president-quote__photo {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(0,200,83,0.1),
-    rgba(21,101,192,0.1)
-  );
-  border: 2px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.president-quote__photo-placeholder span {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  text-align: center;
-  padding: var(--space-md);
-}
-
-/* When real photo added: */
-/* .president-quote__photo-placeholder img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  border-radius: 50%;
-} */
+  display: block;
+  position: relative;
+  z-index: 2;
+  border: 2px solid var(--color-border);
+}
+
+/* Remove placeholder styles */
+.president-quote__photo-placeholder {
+  display: none;
+}
 
 .president-quote__photo-ring {
   position: absolute;
@@ -75,6 +61,7 @@
   border-radius: 50%;
   border: 1px solid rgba(0,200,83,0.2);
   pointer-events: none;
+  z-index: 1;
 }
 
 .president-quote__identity {

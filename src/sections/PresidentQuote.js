@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import '../styles/components/PresidentQuote.css';
+import presidentImg from '../assets/president.jpeg';
 
 function PresidentQuote() {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
@@ -18,9 +19,11 @@ function PresidentQuote() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <div className="president-quote__photo-wrap">
-            <div className="president-quote__photo-placeholder">
-              <span>Felix Cherwon</span>
-            </div>
+            <img 
+              src={presidentImg} 
+              alt="Felix Cherwon - President & Founder of Tujiinue CBO"
+              className="president-quote__photo"
+            />
             <div className="president-quote__photo-ring" />
           </div>
           <div className="president-quote__identity">

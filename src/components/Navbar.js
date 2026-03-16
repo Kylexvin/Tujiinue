@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../styles/components/Navbar.css';
+import logoImg from '../assets/logo.png'; // Import the logo
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -35,9 +36,10 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
 
-        {/* Logo */}
+        {/* Logo with image */}
         <Link to="/" className="navbar__logo">
-          Tuji<span>inue</span>
+          <img src={logoImg} alt="Tujiinue CBO" className="navbar__logo-img" />
+          <span className="navbar__logo-text">Tuji<span>inue</span></span>
         </Link>
 
         {/* Desktop Links */}

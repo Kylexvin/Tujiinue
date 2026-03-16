@@ -22,19 +22,41 @@
   height: 100%;
 }
 
-/* ── LOGO ── */
+/* Alternative: Add a subtle background to make the logo pop */
 .navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05); /* Very subtle white background */
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(2px); /* Optional blur effect */
+}
+
+.navbar__logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.navbar__logo-text {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: 800;
-  color: var(--color-text-primary);
-  letter-spacing: -0.5px;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
 }
 
-.navbar__logo span {
-  color: var(--color-accent-green);
+.navbar__logo-text span {
+  color: #4CAF50;
 }
 
+/* Remove the background when scrolled if navbar becomes lighter */
+.navbar--scrolled .navbar__logo {
+  background: transparent;
+  backdrop-filter: none;
+}
 /* ── DESKTOP LINKS ── */
 .navbar__links {
   display: flex;
