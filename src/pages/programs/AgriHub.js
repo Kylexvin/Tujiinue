@@ -1,0 +1,1 @@
+export default function AgriHub() { return <div>AgriHub</div>; }

@@ -1,0 +1,197 @@
+.president-quote {
+  background: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.president-quote::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,200,83,0.05) 0%, transparent 70%);
+  top: -200px;
+  right: -150px;
+  pointer-events: none;
+}
+
+/* ── INNER ── */
+.president-quote__inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+/* ── LEFT ── */
+.president-quote__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.president-quote__photo-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.president-quote__photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(0,200,83,0.1),
+    rgba(21,101,192,0.1)
+  );
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.president-quote__photo-placeholder span {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-md);
+}
+
+/* When real photo added: */
+/* .president-quote__photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+} */
+
+.president-quote__photo-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,200,83,0.2);
+  pointer-events: none;
+}
+
+.president-quote__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.president-quote__name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.president-quote__role {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ── RIGHT ── */
+.president-quote__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.president-quote__mark {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  line-height: 0.5;
+  color: var(--color-accent-green);
+  opacity: 0.3;
+  font-weight: 800;
+  user-select: none;
+}
+
+.president-quote__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  border-left: 3px solid var(--color-accent-green);
+  padding-left: var(--space-xl);
+  font-style: normal;
+}
+
+.president-quote__sub {
+  font-size: var(--text-base);
+  color: var(--color-accent-green);
+  font-weight: 500;
+  padding-left: var(--space-xl);
+  font-style: italic;
+}
+
+.president-quote__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-green);
+  padding-left: var(--space-xl);
+  transition: gap var(--transition-fast);
+  width: fit-content;
+}
+
+.president-quote__link:hover {
+  gap: var(--space-md);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .president-quote__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .president-quote__left {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .president-quote__identity {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .president-quote__photo-wrap {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+
+  .president-quote__mark {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .president-quote__left {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .president-quote__identity {
+    align-items: center;
+    text-align: center;
+  }
+
+  .president-quote__text {
+    font-size: var(--text-base);
+  }
+}
