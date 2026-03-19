@@ -45,6 +45,60 @@
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent);
 }
 
+/* ── SLIDESHOW ── */
+.hero__image-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-primary);
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  display: block;
+}
+
+.hero__slide--active {
+  opacity: 1;
+}
+
+/* ── DOTS ── */
+.hero__slide-dots {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+}
+
+.hero__slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--transition-base);
+}
+
+.hero__slide-dot--active {
+  background: var(--color-secondary);
+  width: 24px;
+  border-radius: var(--radius-full);
+}
 /* Mobile overlay — hidden on desktop */
 .hero__overlay {
   display: none;

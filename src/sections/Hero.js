@@ -1,7 +1,20 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/components/Hero.css';
-import heroImage from '../assets/hero.jpg';
+
+import hero1 from '../assets/cbo1.jpeg';
+import hero2 from '../assets/cbo.jpeg';
+import hero3 from '../assets/cbo3.jpeg';
+import hero4 from '../assets/cbo4.jpeg';
+
+const heroImages = [hero1, hero2, hero3, hero4];
+
+// Preload all images
+heroImages.forEach((src) => {
+  const img = new Image();
+  img.src = src;
+});
 
 const stats = [
   { value: '1.2M+', label: 'Seedlings Distributed' },
@@ -15,7 +28,7 @@ const fadeUp = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.7, ease: 'easeOut' },
+    transition: { delay: i * 0.12, duration: 0.4, ease: 'easeOut' },
   }),
 };
 
@@ -24,21 +37,32 @@ const fadeLeft = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { delay: 0.3, duration: 0.8, ease: 'easeOut' },
+    transition: { delay: 0.2, duration: 0.4, ease: 'easeOut' },
   },
 };
 
 function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!paused) {
+        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+      }
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [paused]);
+
   return (
     <div
       className="hero"
-      style={{ '--hero-bg': `url(${heroImage})` }}
+      style={{ '--hero-bg': `url(${heroImages[currentSlide]})` }}
     >
 
       {/* Decorations */}
       <div className="hero__glow" />
-      <div className="hero__glow" />
-<div className="hero__glow-2" />
+      <div className="hero__glow-2" />
       <div className="hero__grid" />
       <div className="hero__overlay" />
 
@@ -106,10 +130,36 @@ function Hero() {
             initial="hidden"
             animate="visible"
           >
-            <div className="hero__image-wrap">
+            <div
+              className="hero__image-wrap"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
               <div className="hero__image-placeholder">
-                <img src={heroImage} alt="Tujiinue Community" />
+                {heroImages.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`Tujiinue Community ${i + 1}`}
+                    className={`hero__slide ${i === currentSlide ? 'hero__slide--active' : ''}`}
+                    loading="eager"
+                    decoding="async"
+                  />
+                ))}
               </div>
+
+              {/* Dot indicators */}
+              <div className="hero__slide-dots">
+                {heroImages.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`hero__slide-dot ${i === currentSlide ? 'hero__slide-dot--active' : ''}`}
+                    onClick={() => setCurrentSlide(i)}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+
               <div className="hero__float-card hero__float-card--tl">
                 <span className="hero__float-value">1.2M+</span>
                 <span className="hero__float-label">Seedlings</span>
