@@ -1,5 +1,5 @@
 .impact-numbers {
-  background: var(--color-bg-primary);
+  background: var(--color-bg-secondary);
   position: relative;
   overflow: hidden;
 }
@@ -9,8 +9,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -30,7 +30,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--color-accent-green);
+  color: var(--color-secondary);
   margin-bottom: var(--space-md);
 }
 
@@ -59,27 +59,64 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
+  box-shadow: var(--shadow-card);
 }
 
 /* ── ITEM ── */
 .impact-numbers__item {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-card);
   padding: var(--space-2xl) var(--space-xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
   transition: background var(--transition-base);
+  position: relative;
 }
 
 .impact-numbers__item:hover {
-  background: var(--color-bg-card);
+  background: #FFFFFF;
+}
+
+/* Alternate color accent per item */
+.impact-numbers__item:nth-child(1) .impact-numbers__value { color: var(--color-primary); }
+.impact-numbers__item:nth-child(1) .impact-numbers__suffix { color: var(--color-primary); }
+
+.impact-numbers__item:nth-child(2) .impact-numbers__value { color: var(--color-secondary); }
+.impact-numbers__item:nth-child(2) .impact-numbers__suffix { color: var(--color-secondary); }
+
+.impact-numbers__item:nth-child(3) .impact-numbers__value { color: var(--color-highlight); }
+.impact-numbers__item:nth-child(3) .impact-numbers__suffix { color: var(--color-highlight); }
+
+.impact-numbers__item:nth-child(4) .impact-numbers__value { color: var(--color-secondary); }
+.impact-numbers__item:nth-child(4) .impact-numbers__suffix { color: var(--color-secondary); }
+
+.impact-numbers__item:nth-child(5) .impact-numbers__value { color: var(--color-primary); }
+.impact-numbers__item:nth-child(5) .impact-numbers__suffix { color: var(--color-primary); }
+
+.impact-numbers__item:nth-child(6) .impact-numbers__value { color: var(--color-highlight); }
+.impact-numbers__item:nth-child(6) .impact-numbers__suffix { color: var(--color-highlight); }
+
+/* Top accent line per item */
+.impact-numbers__item:nth-child(1)::before { background: var(--color-primary); }
+.impact-numbers__item:nth-child(2)::before { background: var(--color-secondary); }
+.impact-numbers__item:nth-child(3)::before { background: var(--color-highlight); }
+.impact-numbers__item:nth-child(4)::before { background: var(--color-secondary); }
+.impact-numbers__item:nth-child(5)::before { background: var(--color-primary); }
+.impact-numbers__item:nth-child(6)::before { background: var(--color-highlight); }
+
+.impact-numbers__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
 }
 
 .impact-numbers__value {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
-  color: var(--color-accent-green);
   line-height: 1;
   display: flex;
   align-items: baseline;
@@ -89,7 +126,6 @@
 .impact-numbers__suffix {
   font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--color-accent-green);
 }
 
 .impact-numbers__label {

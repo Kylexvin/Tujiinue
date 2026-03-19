@@ -1,23 +1,58 @@
 :root {
-  /* Colors */
-  --color-bg-primary: #0A0F1E;
-  --color-bg-secondary: #0D1526;
-  --color-bg-card: rgba(255, 255, 255, 0.04);
-  --color-accent-green: #00C853;
-  --color-accent-green-dim: rgba(0, 200, 83, 0.15);
-  --color-accent-blue: #1565C0;
-  --color-accent-glow: rgba(0, 200, 83, 0.3);
-  --color-text-primary: #F0F4FF;
-  --color-text-secondary: #8A9BBE;
-  --color-text-muted: #4A5568;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-accent: rgba(0, 200, 83, 0.3);
+  /* ── BACKGROUNDS ── */
+  --color-bg-primary: #F5F5F7;
+  --color-bg-secondary: #EEEEF2;
+  --color-bg-card: #FFFFFF;
+  --color-bg-dark: #12153D;
+/* ── BACKGROUNDS ── */
+--color-bg-dark: #12153D;
 
-  /* Typography */
---font-primary: 'DM Sans', sans-serif;
---font-display: 'Playfair Display', serif;
+  /* ── BRAND PRIMARY — Deep Indigo ── */
+  --color-primary: #29079E;
+  --color-primary-light: #3D1DB8;
+  --color-primary-dim: rgba(41, 7, 158, 0.08);
+  --color-primary-glow: rgba(41, 7, 158, 0.25);
 
-  /* Sizes */
+  /* ── BRAND SECONDARY — Warm Orange ── */
+  --color-secondary: #D07A43;
+  --color-secondary-dim: rgba(208, 122, 67, 0.1);
+  --color-secondary-glow: rgba(208, 122, 67, 0.3);
+
+  /* ── BRAND HIGHLIGHT — Pink/Magenta ── */
+  --color-highlight: #EF3D96;
+  --color-highlight-dim: rgba(239, 61, 150, 0.1);
+  --color-highlight-glow: rgba(239, 61, 150, 0.3);
+
+  /* ── BRAND LIGHT ── */
+  --color-light: #E3E5F0;
+  --color-light-dim: rgba(227, 229, 240, 0.5);
+
+  /* ── LEGACY ALIASES ── */
+  --color-accent-green: #29079E;
+  --color-accent-green-dim: rgba(41, 7, 158, 0.08);
+  --color-accent-green-glow: rgba(41, 7, 158, 0.25);
+  --color-accent-blue: #D07A43;
+  --color-accent-blue-dim: rgba(208, 122, 67, 0.1);
+  --color-accent-blue-glow: rgba(208, 122, 67, 0.3);
+  --color-accent-red: #EF3D96;
+  --color-accent-red-dim: rgba(239, 61, 150, 0.1);
+  --color-accent-red-glow: rgba(239, 61, 150, 0.3);
+  --color-accent-glow: rgba(41, 7, 158, 0.25);
+  --color-border-accent: rgba(41, 7, 158, 0.2);
+
+  /* ── TEXT ── */
+  --color-text-primary: #0D0F2D;
+  --color-text-secondary: #4A4F7A;
+  --color-text-muted: #8A8FAD;
+
+  /* ── BORDERS ── */
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  /* ── TYPOGRAPHY ── */
+  --font-primary: 'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  /* ── TYPE SCALE ── */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -29,7 +64,7 @@
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
 
-  /* Spacing */
+  /* ── SPACING ── */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -39,21 +74,24 @@
   --space-3xl: 4rem;
   --space-4xl: 6rem;
 
-  /* Layout */
+  /* ── LAYOUT ── */
   --max-width: 1200px;
   --navbar-height: 70px;
 
-  /* Borders */
+  /* ── RADII ── */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 40px rgba(0, 200, 83, 0.15);
+  /* ── SHADOWS ── */
+  --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 40px rgba(41, 7, 158, 0.15);
+  --shadow-glow-secondary: 0 0 40px rgba(208, 122, 67, 0.15);
+  --shadow-glow-highlight: 0 0 40px rgba(239, 61, 150, 0.15);
 
-  /* Transitions */
+  /* ── TRANSITIONS ── */
   --transition-fast: 0.15s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.6s ease;

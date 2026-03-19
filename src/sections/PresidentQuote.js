@@ -24,6 +24,10 @@ function PresidentQuote() {
               alt="Felix Cherwon - President & Founder of Tujiinue CBO"
               className="president-quote__photo"
             />
+            <div className="hero__image-wrap">
+  <div className="president-quote__photo-ring" />
+  <div className="president-quote__photo-ring-2" />
+</div>
             <div className="president-quote__photo-ring" />
           </div>
           <div className="president-quote__identity">

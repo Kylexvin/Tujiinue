@@ -6,12 +6,15 @@
   z-index: 1000;
   height: var(--navbar-height);
   transition: background var(--transition-base), backdrop-filter var(--transition-base), border-bottom var(--transition-base);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar--scrolled {
-  background: rgba(10, 15, 30, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -22,16 +25,14 @@
   height: 100%;
 }
 
-/* Alternative: Add a subtle background to make the logo pop */
+/* ── LOGO ── */
 .navbar__logo {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.05); /* Very subtle white background */
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-md);
-  backdrop-filter: blur(2px); /* Optional blur effect */
 }
 
 .navbar__logo-img {
@@ -44,19 +45,14 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-text-primary);
   line-height: 1;
 }
 
 .navbar__logo-text span {
-  color: #4CAF50;
+  color: var(--color-highlight);
 }
 
-/* Remove the background when scrolled if navbar becomes lighter */
-.navbar--scrolled .navbar__logo {
-  background: transparent;
-  backdrop-filter: none;
-}
 /* ── DESKTOP LINKS ── */
 .navbar__links {
   display: flex;
@@ -81,13 +77,13 @@
   cursor: pointer;
 }
 
-.navbar__link:hover,
-.navbar__link--active {
+.navbar__link:hover {
   color: var(--color-text-primary);
 }
 
 .navbar__link--active {
-  color: var(--color-accent-green);
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 /* ── DROPDOWN ── */
@@ -95,13 +91,12 @@
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  min-width: 210px;
-  background: rgba(13, 21, 38, 0.97);
-  backdrop-filter: blur(16px);
+  min-width: 220px;
+  background: #FFFFFF;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-sm);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .navbar__dropdown-link {
@@ -114,8 +109,8 @@
 }
 
 .navbar__dropdown-link:hover {
-  background: var(--color-accent-green-dim);
-  color: var(--color-accent-green);
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
 }
 
 /* ── CTA ── */
@@ -123,15 +118,16 @@
   padding: var(--space-sm) var(--space-lg);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--color-bg-primary);
-  background: var(--color-accent-green);
+  color: #FFFFFF;
+  background: var(--color-primary);
   border-radius: var(--radius-full);
-  transition: opacity var(--transition-fast), box-shadow var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .navbar__cta:hover {
-  opacity: 0.9;
-  box-shadow: 0 0 20px var(--color-accent-glow);
+  background: var(--color-primary-light);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  transform: translateY(-1px);
 }
 
 /* ── HAMBURGER ── */
@@ -170,11 +166,11 @@
   flex-direction: column;
   gap: var(--space-xs);
   padding: var(--space-md) var(--space-xl) var(--space-xl);
-  background: rgba(10, 15, 30, 0.98);
-  backdrop-filter: blur(16px);
+  background: #FFFFFF;
   border-top: 1px solid var(--color-border);
   max-height: calc(100vh - var(--navbar-height));
   overflow-y: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .navbar__mobile-link {
@@ -183,13 +179,14 @@
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   border-radius: var(--radius-sm);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), background var(--transition-fast);
   text-align: left;
   width: 100%;
 }
 
 .navbar__mobile-link:hover {
-  color: var(--color-accent-green);
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
 }
 
 .navbar__mobile-link--sub {
@@ -208,7 +205,7 @@
   font-weight: 400;
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-sm);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), background var(--transition-fast);
   background: none;
   border: none;
   cursor: pointer;
@@ -216,13 +213,14 @@
 }
 
 .navbar__mobile-dropdown-toggle:hover {
-  color: var(--color-accent-green);
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
 }
 
 /* ── MOBILE SUBMENU ── */
 .navbar__mobile-submenu {
-  background: rgba(255, 255, 255, 0.03);
-  border-left: 2px solid var(--color-border-accent);
+  background: var(--color-bg-secondary);
+  border-left: 2px solid var(--color-primary);
   margin: 4px 0 4px var(--space-md);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   overflow: hidden;
@@ -233,7 +231,10 @@
   display: block;
   margin-top: var(--space-md);
   text-align: center;
-  color: var(--color-bg-primary);
+  color: #FFFFFF;
+  background: var(--color-primary);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
 }
 
 /* ── RESPONSIVE ── */

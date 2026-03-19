@@ -37,6 +37,8 @@ function Hero() {
 
       {/* Decorations */}
       <div className="hero__glow" />
+      <div className="hero__glow" />
+<div className="hero__glow-2" />
       <div className="hero__grid" />
       <div className="hero__overlay" />
 
