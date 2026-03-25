@@ -1,0 +1,94 @@
+.leadership-message {
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+}
+
+.leadership-message__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.leadership-message__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2xl);
+}
+
+.leadership-message__card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  display: flex;
+  gap: var(--space-xl);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+}
+
+.leadership-message__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.leadership-message__avatar {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.leadership-message__avatar-placeholder svg {
+  width: 100%;
+  height: 100%;
+}
+
+.leadership-message__content {
+  flex: 1;
+}
+
+.leadership-message__quote {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.leadership-message__quote::before {
+  content: '"';
+  font-size: var(--text-4xl);
+  color: var(--color-primary-dim);
+  position: absolute;
+  top: -15px;
+  left: -10px;
+  opacity: 0.5;
+}
+
+.leadership-message__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.leadership-message__title {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .leadership-message__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .leadership-message__card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .leadership-message__avatar {
+    width: 120px;
+    height: 120px;
+  }
+}

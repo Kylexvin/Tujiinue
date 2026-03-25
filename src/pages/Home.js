@@ -5,6 +5,7 @@ import ImpactNumbers from '../sections/ImpactNumbers';
 import ProgramsPreview from '../sections/ProgramsPreview';
 import PresidentQuote from '../sections/PresidentQuote';
 import Partners from '../sections/Partners';
+import GraphicSection from '../sections/GraphicSection'; // Add this import
 import '../styles/components/Home.css';
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
       <Hero />
       <Pillars />
       <AboutSnippet />
+      <GraphicSection /> {/* Add this new graphic section */}
       <ImpactNumbers />
       <ProgramsPreview />
       <PresidentQuote />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/components/Hero.css';
@@ -44,14 +44,19 @@ const fadeLeft = {
 function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [paused, setPaused] = useState(false);
+  const intervalRef = useRef(null);
+
+  const startTimer = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 2500);
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (!paused) {
-        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-      }
-    }, 4500);
-    return () => clearInterval(timer);
+    if (!paused) startTimer();
+    else clearInterval(intervalRef.current);
+    return () => clearInterval(intervalRef.current);
   }, [paused]);
 
   return (
@@ -133,7 +138,10 @@ function Hero() {
             <div
               className="hero__image-wrap"
               onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
+              onMouseLeave={() => {
+                setPaused(false);
+                startTimer();
+              }}
             >
               <div className="hero__image-placeholder">
                 {heroImages.map((img, i) => (
@@ -154,7 +162,10 @@ function Hero() {
                   <button
                     key={i}
                     className={`hero__slide-dot ${i === currentSlide ? 'hero__slide-dot--active' : ''}`}
-                    onClick={() => setCurrentSlide(i)}
+                    onClick={() => {
+                      setCurrentSlide(i);
+                      startTimer();
+                    }}
                     aria-label={`Slide ${i + 1}`}
                   />
                 ))}

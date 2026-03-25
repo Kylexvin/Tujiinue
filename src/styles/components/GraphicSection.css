@@ -1,0 +1,139 @@
+.graphic-section {
+  padding: 5rem 0;
+  background: #f9fafb;
+  position: relative;
+  overflow: hidden;
+}
+
+.graphic-section__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.graphic-section__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #2e7d32, #2196f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.graphic-section__subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.graphic-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.graphic-section__illustration {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.illustration-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wave-divider {
+  width: 100%;
+  line-height: 0;
+  position: relative;
+}
+
+.wave-divider svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.icon-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.icon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.icon-card__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(46, 125, 50, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.icon-card:hover .icon-card__icon {
+  transform: scale(1.1);
+}
+
+.icon-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+
+.icon-card__description {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.animated-graphic {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 768px) {
+  .graphic-section {
+    padding: 3rem 0;
+  }
+  
+  .graphic-section__title {
+    font-size: 2rem;
+  }
+  
+  .graphic-section__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

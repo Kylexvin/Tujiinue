@@ -1,0 +1,79 @@
+.icon-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.icon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.icon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.icon-card:hover::before {
+  transform: scaleX(1);
+}
+
+.icon-card__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(46, 125, 50, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.icon-card:hover .icon-card__icon {
+  transform: scale(1.1);
+  background: rgba(46, 125, 50, 0.2);
+}
+
+.icon-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-dark);
+}
+
+.icon-card__description {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+}
+
+/* Color variants */
+.icon-card--primary .icon-card__icon {
+  background: rgba(46, 125, 50, 0.1);
+}
+
+.icon-card--secondary .icon-card__icon {
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.icon-card--accent .icon-card__icon {
+  background: rgba(255, 152, 0, 0.1);
+}

@@ -1,0 +1,15 @@
+.wave-divider {
+  width: 100%;
+  line-height: 0;
+  position: relative;
+}
+
+.wave-divider svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wave-divider--mountain {
+  margin-top: -2px;
+}
