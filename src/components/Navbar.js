@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../styles/components/Navbar.css';
-import logoImg from '../assets/logo.png'; // Import the logo
+import logoImg from '../assets/logo.png';
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -25,6 +25,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
   const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const dropdownTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,11 +33,22 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleDropdownEnter = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setProgramsOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setProgramsOpen(false);
+    }, 150);
+  };
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
 
-        {/* Logo with image */}
+        {/* Logo */}
         <Link to="/" className="navbar__logo">
           <img src={logoImg} alt="Tujiinue CBO" className="navbar__logo-img" />
           <span className="navbar__logo-text">Tuji<span>inue</span></span>
@@ -49,20 +61,34 @@ function Navbar() {
               <li
                 key={link.label}
                 className="navbar__item navbar__item--dropdown"
-                onMouseEnter={() => setProgramsOpen(true)}
-                onMouseLeave={() => setProgramsOpen(false)}
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
               >
-                <span className="navbar__link">
+                <span className={`navbar__link ${programsOpen ? 'navbar__link--active' : ''}`}>
                   {link.label}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <svg
+                    width="12" height="12" viewBox="0 0 12 12" fill="none"
+                    style={{
+                      transform: programsOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: '0.3s'
+                    }}
+                  >
                     <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 </span>
                 {programsOpen && (
-                  <ul className="navbar__dropdown">
+                  <ul
+                    className="navbar__dropdown"
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
+                  >
                     {link.dropdown.map((sub) => (
                       <li key={sub.label}>
-                        <NavLink to={sub.path} className="navbar__dropdown-link">
+                        <NavLink
+                          to={sub.path}
+                          className="navbar__dropdown-link"
+                          onClick={() => setProgramsOpen(false)}
+                        >
                           {sub.label}
                         </NavLink>
                       </li>
