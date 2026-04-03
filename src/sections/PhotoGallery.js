@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Masonry from 'react-masonry-css';
 import '../styles/components/PhotoGallery.css';
 
 import g1 from './gallery/gallery1.jpeg';
@@ -14,22 +15,9 @@ import g8 from './gallery/gallery8.jpeg';
 import g9 from './gallery/gallery9.jpeg';
 import g10 from './gallery/gallery10.jpeg';
 import g11 from './gallery/gallery11.jpeg';
-// import g12 from '../assets/gallery/gallery12.jpg';
-// import g13 from '../assets/gallery/gallery13.jpg';
-// import g14 from '../assets/gallery/gallery14.jpg';
-// import g15 from '../assets/gallery/gallery15.jpg';
-// import g16 from '../assets/gallery/gallery16.jpg';
-// import g17 from '../assets/gallery/gallery17.jpg';
-// import g18 from '../assets/gallery/gallery18.jpg';
-// import g19 from '../assets/gallery/gallery19.jpg';
-// import g20 from '../assets/gallery/gallery20.jpg';
 
-const allImages = [
-  g1, g2, g3, g4, g5, g6, g7, g8, g9, g10,
-  g11, // g12, g13, g14, g15, g16, g17, g18, g19, g20
-];
+const allImages = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11];
 
-// Shuffle array
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -39,12 +27,38 @@ function shuffle(arr) {
   return a;
 }
 
+const breakpointColumns = {
+  default: 4,
+  1100: 3,
+  768: 2,
+  480: 2,
+};
+
 function PhotoGallery() {
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
   const [lightbox, setLightbox] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  // Shuffle once on mount, show 12 on home
-  const images = useMemo(() => shuffle(allImages).slice(0, 12), []);
+  const images = useMemo(() => shuffle(allImages), []);
+
+  const openLightbox = (img, index) => {
+    setLightbox(img);
+    setLightboxIndex(index);
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    const newIndex = (lightboxIndex - 1 + images.length) % images.length;
+    setLightbox(images[newIndex]);
+    setLightboxIndex(newIndex);
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    const newIndex = (lightboxIndex + 1) % images.length;
+    setLightbox(images[newIndex]);
+    setLightboxIndex(newIndex);
+  };
 
   return (
     <section className="photo-gallery section" ref={ref}>
@@ -68,30 +82,34 @@ function PhotoGallery() {
         </motion.div>
 
         {/* Masonry Grid */}
-        <div className="photo-gallery__grid">
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="photo-gallery__masonry"
+          columnClassName="photo-gallery__masonry-col"
+        >
           {images.map((img, i) => (
             <motion.div
               key={i}
-              className={`photo-gallery__item photo-gallery__item--${(i % 5) + 1}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.05, duration: 0.5 }}
-              onClick={() => setLightbox(img)}
+              className="photo-gallery__item"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.06, duration: 0.5 }}
+              onClick={() => openLightbox(img, i)}
             >
               <img
                 src={img}
-                alt={`Tujiinue community photo ${i + 1}`}
+                alt={`Tujiinue field work ${i + 1}`}
                 loading="lazy"
                 decoding="async"
               />
               <div className="photo-gallery__overlay">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </motion.div>
           ))}
-        </div>
+        </Masonry>
 
       </div>
 
@@ -107,16 +125,35 @@ function PhotoGallery() {
           >
             ×
           </button>
+
+          <button
+            className="photo-gallery__lightbox-nav photo-gallery__lightbox-nav--prev"
+            onClick={prevImage}
+          >
+            ‹
+          </button>
+
           <img
             src={lightbox}
-            alt="Tujiinue community"
+            alt="Tujiinue field work"
             className="photo-gallery__lightbox-img"
             onClick={(e) => e.stopPropagation()}
           />
+
+          <button
+            className="photo-gallery__lightbox-nav photo-gallery__lightbox-nav--next"
+            onClick={nextImage}
+          >
+            ›
+          </button>
+
+          <div className="photo-gallery__lightbox-counter">
+            {lightboxIndex + 1} / {images.length}
+          </div>
         </div>
       )}
     </section>
   );
 }
 
-export default PhotoGallery;
+export default PhotoGallery; 
