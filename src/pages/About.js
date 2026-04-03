@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import useCountUp from '../hooks/useCountUp';
+import presidentImg from '../assets/president.jpeg';
 import '../styles/components/About.css';
 
 const values = [
@@ -434,10 +435,15 @@ function About() {
             animate={presidentInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <div className="about-president__photo-wrap">
-              <div className="about-president__photo-placeholder">FC</div>
-              <div className="about-president__ring" />
-            </div>
+<div className="about-president__photo-wrap">
+  <img
+    src={presidentImg}
+    alt="Felix Cherwon"
+    className="about-president__photo"
+  />
+  <div className="about-president__ring" />
+</div>
+
             <div className="about-president__identity">
               <span className="about-president__name">Felix Cherwon, MSc.</span>
               <span className="about-president__role">President & Founder</span>
