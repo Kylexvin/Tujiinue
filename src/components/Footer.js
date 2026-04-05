@@ -121,10 +121,10 @@ function Footer() {
               <div>
                 <span className="footer__contact-label">Email</span>
                 <a
-                  href="mailto:info@tujiinuecbo.or.ke"
+                  href="mailto:info@tujiinue-cbo.org"
                   className="footer__contact-value footer__contact-link"
                 >
-                  info@tujiinuecbo.or.ke
+                  info@tujiinue-cbo.org
                 </a>
               </div>
             </div>
@@ -137,7 +137,7 @@ function Footer() {
                   href="tel:+254700000000"
                   className="footer__contact-value footer__contact-link"
                 >
-                  +254 700 000 000
+                  +254 722 760 630
                 </a>
               </div>
             </div>
@@ -180,11 +180,11 @@ function Footer() {
             All rights reserved.
           </p>
           <div className="footer__bottom-links">
-            <span className="footer__bottom-link">Privacy Policy</span>
+            {/* <span className="footer__bottom-link">Privacy Policy</span>
             <span className="footer__bottom-divider">·</span>
-            <span className="footer__bottom-link">Terms of Use</span>
+            <span className="footer__bottom-link">Terms of Use</span> */}
             <span className="footer__bottom-divider">·</span>
-            <span className="footer__bottom-link">CBO Registration No. XXXXX</span>
+            <span className="footer__bottom-link">CBO Registration No. 0020097</span>
           </div>
         </div>
       </div>
