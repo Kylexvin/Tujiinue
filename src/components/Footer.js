@@ -101,6 +101,7 @@ function Footer() {
           </ul>
         </div>
 
+
         {/* Contact + Map */}
         <div className="footer__col footer__col--contact">
           <h4 className="footer__col-title">Find Us</h4>
@@ -164,10 +165,12 @@ function Footer() {
       <div className="footer__partners">
         <div className="container footer__partners-inner">
           <span className="footer__partners-label">Trusted Partners</span>
+
           <div className="footer__partners-list">
             {['USAID', 'RTI International', 'EDC', 'KEMRI', 'MoE Kenya', 'Uasin Gishu County'].map((p) => (
               <span key={p} className="footer__partner-tag">{p}</span>
             ))}
+            
           </div>
         </div>
       </div>
