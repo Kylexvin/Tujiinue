@@ -214,13 +214,14 @@ function About() {
             animate={storyInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
+            
             <div className="about-story__image">
               <div className="about-story__image-placeholder">
                 Community photo
               </div>
             </div>
 
-            
+
             <div className="about-story__badge">
               <span className="about-story__badge-year">2014</span>
               <span className="about-story__badge-label">Year Founded</span>
