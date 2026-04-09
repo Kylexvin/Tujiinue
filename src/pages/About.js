@@ -219,6 +219,8 @@ function About() {
                 Community photo
               </div>
             </div>
+
+            
             <div className="about-story__badge">
               <span className="about-story__badge-year">2014</span>
               <span className="about-story__badge-label">Year Founded</span>

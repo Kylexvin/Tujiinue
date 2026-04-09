@@ -82,4 +82,4 @@ const TeamPreview = () => {
   );
 };
 
-export default TeamPreview;
+export default TeamPreview; 
