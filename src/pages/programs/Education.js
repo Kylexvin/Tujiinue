@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import '../../styles/components/Programs.css';
+import educationImg from '../../assets/cbo4.jpeg';
 
 const steps = [
   {
@@ -116,11 +117,13 @@ function Education() {
               animate={overviewInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <div className="program-overview__image">
-                <div className="program-overview__image-placeholder">
-                  Education programme photo
-                </div>
-              </div>
+           <div className="program-overview__image">
+  <img 
+    src={educationImg} 
+    alt="Children participating in Tusome reading programme"
+    className="program-overview__real-image"
+  />
+</div>
             </motion.div>
           </div>
         </div>

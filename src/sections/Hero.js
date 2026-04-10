@@ -119,10 +119,10 @@ function Hero() {
               animate="visible"
               custom={3}
             >
-              <Link to="/programs" className="hero__btn hero__btn--primary">
+              {/* <Link to="/programs" className="hero__btn hero__btn--primary">
                 Explore Our Work
-              </Link>
-              <Link to="/about" className="hero__btn hero__btn--ghost">
+              </Link> */}
+              <Link to="/about" className="hero__btn hero__btn--primary">
                 Our Story
               </Link>
             </motion.div>

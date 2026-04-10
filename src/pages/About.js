@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import useCountUp from '../hooks/useCountUp';
 import presidentImg from '../assets/president.jpeg';
+import communityImg from '../assets/cbo1.jpeg'; 
 import '../styles/components/About.css';
 
 const values = [
@@ -215,11 +216,13 @@ function About() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             
-            <div className="about-story__image">
-              <div className="about-story__image-placeholder">
-                Community photo
-              </div>
-            </div>
+<div className="about-story__image">
+  <img 
+    src={communityImg} 
+    alt="Community members at a Tujiinue event"
+    className="about-story__real-image"
+  />
+</div>
 
 
             <div className="about-story__badge">
@@ -520,9 +523,7 @@ function About() {
               <Link to="/contact" className="about-cta__btn about-cta__btn--primary">
                 Partner With Us
               </Link>
-              <Link to="/programs" className="about-cta__btn about-cta__btn--ghost">
-                Explore Our Work
-              </Link>
+              
             </div>
           </motion.div>
         </div>

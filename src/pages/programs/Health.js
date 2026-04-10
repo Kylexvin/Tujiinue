@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import '../../styles/components/Programs.css';
+import healthImg from '../../assets/health.jpg';
 
 const steps = [
   {
@@ -117,9 +118,11 @@ function Health() {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <div className="program-overview__image">
-                <div className="program-overview__image-placeholder">
-                  M-IMCI health programme photo
-                </div>
+                <img 
+                  src={healthImg} 
+                  alt="Health workers using the M-IMCI tool"
+                  className="program-overview__real-image"
+                />
               </div>
             </motion.div>
           </div>

@@ -12,12 +12,12 @@ const contactInfo = [
   },
   {
     label: 'Email',
-    value: 'info@tujiinuecbo.or.ke',
+    value: 'info@tujiinue-cbo.org',
     color: 'var(--color-secondary)',
   },
   {
     label: 'Phone',
-    value: '+254 700 000 000',
+    value: '+254 722 760 630',
     color: 'var(--color-highlight)',
   },
   {
@@ -44,18 +44,57 @@ function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const { ref: formRef, inView: formInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: infoRef, inView: infoInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError(''); // Clear error when user types
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setError('');
+
+  // Create form data for FormSubmit
+  const formData = new FormData();
+  formData.append('name', form.name);
+  formData.append('email', form.email);
+  formData.append('organisation', form.organisation || 'Not provided');
+  formData.append('reason', form.reason);
+  formData.append('message', form.message);
+  formData.append('_subject', `Tujiinue CBO Contact Form: ${form.reason}`);
+  formData.append('_captcha', 'false');
+
+  try {
+    // Using your activation code instead of email address
+    const response = await fetch('https://formsubmit.co/2b1f2b207c04ac24607d53338f9b248c', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+      setForm({
+        name: '',
+        email: '',
+        organisation: '',
+        reason: '',
+        message: '',
+      });
+    } else {
+      throw new Error('Failed to send message');
+    }
+  } catch (err) {
+    setError('Failed to send message. Please try again or email us directly at info@tujiinuecbo.or.ke');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div className="contact-page">
@@ -103,14 +142,14 @@ function Contact() {
             {submitted ? (
               <div className="contact-form-success">
                 <div className="contact-form-success__icon">✓</div>
-                <h3 className="contact-form-success__title">Message Sent</h3>
+                <h3 className="contact-form-success__title">Message Sent Successfully!</h3>
                 <p className="contact-form-success__body">
-                  Thank you for reaching out. Our team will get back to you
+                  Thank you for reaching out to Tujiinue CBO. Our team will get back to you
                   within 2 business days.
                 </p>
                 <button
                   className="contact-form-success__reset"
-                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', organisation: '', reason: '', message: '' }); }}
+                  onClick={() => setSubmitted(false)}
                 >
                   Send Another Message
                 </button>
@@ -121,6 +160,13 @@ function Contact() {
                 <p className="contact-form-wrap__sub">
                   Fill in the form and we will get back to you within 2 business days.
                 </p>
+                
+                {error && (
+                  <div className="contact-form__error">
+                    {error}
+                  </div>
+                )}
+                
                 <form className="contact-form" onSubmit={handleSubmit}>
                   <div className="contact-form__row">
                     <div className="contact-form__field">
@@ -133,6 +179,7 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                     <div className="contact-form__field">
@@ -145,6 +192,7 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -157,6 +205,7 @@ function Contact() {
                       value={form.organisation}
                       onChange={handleChange}
                       placeholder="Your organisation (optional)"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div className="contact-form__field">
@@ -167,6 +216,7 @@ function Contact() {
                       value={form.reason}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                     >
                       <option value="">Select a reason</option>
                       {reasons.map((r) => (
@@ -184,10 +234,15 @@ function Contact() {
                       placeholder="Tell us more about your inquiry..."
                       required
                       rows={5}
+                      disabled={isSubmitting}
                     />
                   </div>
-                  <button type="submit" className="contact-form__submit">
-                    Send Message
+                  <button 
+                    type="submit" 
+                    className="contact-form__submit"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               </>
@@ -224,22 +279,22 @@ function Contact() {
             </div>
 
             {/* Map placeholder */}
-            <div className="contact-map">
+            {/* <div className="contact-map">
               <div className="contact-map__placeholder">
                 <span>Komora Center, Eldoret</span>
                 <span className="contact-map__sub">Google Map will be embedded here</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Social links */}
-            <div className="contact-social">
+            {/* <div className="contact-social">
               <span className="contact-social__label">Follow Tujiinue CBO</span>
               <div className="contact-social__links">
                 <a href="https://facebook.com" target="_blank" rel="noreferrer" className="contact-social__link">Facebook</a>
                 <a href="https://twitter.com" target="_blank" rel="noreferrer" className="contact-social__link">Twitter / X</a>
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="contact-social__link">LinkedIn</a>
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
         </div>

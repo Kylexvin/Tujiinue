@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import '../../styles/components/Programs.css';
+import agriHubImg from '../../assets/agri.jpg';
 
 const steps = [
   {
@@ -114,9 +115,11 @@ function AgriHub() {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <div className="program-overview__image">
-                <div className="program-overview__image-placeholder">
-                  Agri-Hub programme photo
-                </div>
+                <img 
+                  src={agriHubImg} 
+                  alt="Farmers using the Agri-Hub platform"
+                  className="program-overview__real-image"
+                />
               </div>
             </motion.div>
           </div>

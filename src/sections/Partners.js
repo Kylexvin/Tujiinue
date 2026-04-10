@@ -147,20 +147,7 @@ function Partners() {
         </motion.div>
 
         {/* Bottom CTA */}
-        <motion.div
-          className="partners__cta-wrap"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeUp}
-          transition={{ delay: 0.4 }}
-        >
-          <p className="partners__cta-text">
-            Interested in partnering with Tujiinue CBO?
-          </p>
-          <a href="/contact" className="partners__cta-btn">
-            Start a Conversation
-          </a>
-        </motion.div>
+       
 
       </div>
     </section>
