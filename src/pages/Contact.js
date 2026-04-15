@@ -77,6 +77,7 @@ const handleSubmit = async (e) => {
       body: formData,
     });
 
+
     if (response.ok) {
       setSubmitted(true);
       setForm({
@@ -114,11 +115,13 @@ const handleSubmit = async (e) => {
               <Link to="/">Home</Link>
               <span>/</span>
               <span>Contact</span>
+
             </div>
             <span className="contact-hero__tag">We Would Love to Hear from You</span>
             <h1 className="contact-hero__title">
               Get In <span className="contact-hero__accent">Touch</span>
             </h1>
+            
             <p className="contact-hero__sub">
               Whether you want to partner with us, make a donation, volunteer,
               or simply learn more — our team in Eldoret is ready to talk.
